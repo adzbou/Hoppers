@@ -8,24 +8,7 @@ public class Board {
     private JFrame guiWindow = new JFrame();
     private JPanel guiPanel = new JPanel();
     private GridLayout hopperBoard = new GridLayout(5,5);
-    private Square lilyPad;
-    private Square water;
-    private Square greenFrog;
-    private Square redFrog;
-    private Square greenFrogSelected;
-    private Square redFrogSelected;
-    private JButton lilyPadButton;
-    private JButton waterButton;
-    private JButton greenFrogButton;
-    private JButton redFrogButton;
-
-    private int [][] level1 = {
-        {1, 0, 3, 0, 1}, 
-        {0, 1, 0, 1, 0}, 
-        {1, 0, 1, 0, 1}, 
-        {0, 1, 0, 1, 0}, 
-        {1, 0, 1, 0, 1}, 
-    };
+    private Square[][] arraySqaure = new Square[5][5];
     
     //Sets the GUI & playspace for the board 
     public Board(){
@@ -33,11 +16,12 @@ public class Board {
     guiWindow.setSize(750, 750);
     guiWindow.setContentPane(guiPanel);
     guiWindow.setVisible(true);
+    guiWindow.setResizable(false);
     guiPanel.setLayout(hopperBoard);
     guiWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     LevelConfig levels = new LevelConfig();
-    drawBoard(levels.waterBoard);
+    drawBoard(levels.level1);
     }
 
     /**
@@ -45,36 +29,16 @@ public class Board {
      * and then comapres the index's of the array against conditions 
      * to draw the level 
      */
+    String[] fileNames = {"resources/images/LilyPad.png", "resources/images/Water.png", 
+                         "resources/images/GreenFrog.png", "resources/images/RedFrog.png"};
+
     public void drawBoard(int levelArray [][]){
-        
         for (int i = 0; i< 5; i++){
-            for(int j =0; j<5; j++){
-            
-            if (levelArray[i][j] == 0){
-                lilyPad = new Square("resources/images/LilyPad.png",i,j);
-                lilyPadButton = lilyPad.getButton();
-                guiPanel.add(lilyPadButton); 
-            }
-            
-            if (levelArray[i][j] == 1){
-                water = new Square("resources/images/Water.png",i,j);
-                waterButton = water.getButton();
-                guiPanel.add(waterButton);
-            }
-
-            if (levelArray[i][j] == 2){
-                greenFrog = new Square("resources/images/GreenFrog.png",i,j);
-                greenFrogButton = greenFrog.getButton();
-                guiPanel.add(greenFrogButton);
-            }
-
-            if (levelArray[i][j] == 3){
-                redFrog = new Square("resources/images/RedFrog.png",i,j);
-                redFrogButton = redFrog.getButton();
-                guiPanel.add(redFrogButton);
-            }
+            for(int j =0; j<5; j++){      
+            int arrayIndex = levelArray[i][j];
+            arraySqaure[i][j] = new Square(fileNames[arrayIndex],i,j);
+            guiPanel.add(arraySqaure[i][j].getButton()); 
         }
-
         guiWindow.setVisible(true);
     }
 

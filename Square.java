@@ -12,16 +12,11 @@ public class Square{
         this.xCoordinate = xCoordinate;
         this.yCoordinate = yCoordinate;
         this.iconName = iconName;
-        icon = new ImageIcon(this.iconName);     
+        icon = new ImageIcon(this.iconName);    
     }
 
-    public int[] getXCoordinate(){
+    public int[] getCoordinate(){
         int[] arr = {xCoordinate,yCoordinate};
-        return arr;
-    }
-
-    public int[] getYCoordinate(){
-        int[] arr = {xCoordinate, yCoordinate};
         return arr;
     }
 
