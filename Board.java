@@ -12,16 +12,16 @@ public class Board {
     
     //Sets the GUI & playspace for the board 
     public Board(){
-    guiWindow.setTitle("Hoppers Jumping Game");
-    guiWindow.setSize(750, 750);
-    guiWindow.setContentPane(guiPanel);
-    guiWindow.setVisible(true);
-    guiWindow.setResizable(false);
-    guiPanel.setLayout(hopperBoard);
-    guiWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        guiWindow.setTitle("Hoppers Jumping Game");
+        guiWindow.setSize(750, 750);
+        guiWindow.setContentPane(guiPanel);
+        guiWindow.setVisible(true);
+        guiWindow.setResizable(false);
+        guiPanel.setLayout(hopperBoard);
+        guiWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    LevelConfig levels = new LevelConfig();
-    drawBoard(levels.level1);
+        LevelConfig levels = new LevelConfig();
+        drawBoard(levels.getLevel(1));
     }
 
     /**
@@ -29,14 +29,18 @@ public class Board {
      * and then comapres the index's of the array against conditions 
      * to draw the level 
      */
-    String[] fileNames = {"resources/images/LilyPad.png", "resources/images/Water.png", 
-                         "resources/images/GreenFrog.png", "resources/images/RedFrog.png"};
+
+/*
+    Square getFileNames = new Square(null, 0, 0);
+    String[] fileNames = getFileNames.getFileArray();
+
+*/
 
     public void drawBoard(int levelArray [][]){
         for (int i = 0; i< 5; i++){
             for(int j =0; j<5; j++){      
             int arrayIndex = levelArray[i][j];
-            arraySqaure[i][j] = new Square(fileNames[arrayIndex],i,j);
+            arraySqaure[i][j] = new Square(arrayIndex,i,j);
             guiPanel.add(arraySqaure[i][j].getButton()); 
         }
         guiWindow.setVisible(true);
