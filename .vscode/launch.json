@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - MainGame",
+            "request": "launch",
+            "mainClass": "MainGame",
+            "projectName": "SCC110_Hoppers_3ad9572e"
+        }
+    ]
+}

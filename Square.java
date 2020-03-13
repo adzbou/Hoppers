@@ -41,34 +41,7 @@ public class Square implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent e){
-        selectUnselect();
-        moveTo();
-        
-       
-    }
-
-	//public void swapWith(Square s) {}
-
-
-
-
-    public void moveTo(){
-        if (imageType == 0){
-            setImage(board.getSelected().imageType);
-            board.getSelected().setImage(0);
-            if (imageType == 5) {
-                setImage(2);
-            }
-            if (imageType == 4){
-                setImage(3);
-            }
-            board.setSelected(null);
-        }
-    }
-
-
-
-    public void selectUnselect(){
+        //changeID();
         if(board.getSelected() == this){
             if (imageType == 5){
                 setImage(2);
@@ -79,7 +52,38 @@ public class Square implements ActionListener{
             board.setSelected(null);
         }
          //If selected == null  
-        else if (!board.isSelected()){
+         else if (!board.isSelected()){
+            if (imageType == 2){
+                setImage(5);
+                board.setSelected(this);
+            }
+            if (imageType == 3){
+                setImage(4);
+                board.setSelected(this);
+            }
+        }else if (imageType == 0){
+            board.setMove(this);
+        }
+        
+       
+    }
+
+	//public void swapWith(Square s) {}
+
+    //Select
+    /*
+    public void changeID(){
+        if(board.getSelected() == this){
+            if (imageType == 5){
+                setImage(2);
+            }
+            if (imageType == 4){
+                setImage(3);
+            }
+            board.setSelected(null);
+        }
+         //If selected == null  
+         else if (!board.isSelected()){
             if (imageType == 2){
                 setImage(5);
                 board.setSelected(this);
@@ -89,10 +93,27 @@ public class Square implements ActionListener{
                 board.setSelected(this);
             }
         }
+        //Moves the pieces 
+        else if (imageType == 0  && board.getSelected()!=null){
+            setImage(board.getSelected().imageType);
+            board.getSelected().setImage(0);
+            if (imageType == 5) {
+                setImage(2);
+            }
+            if (imageType == 4){
+                setImage(3);
+            }
+            board.setSelected(null);
+        
+        }
     }
-
-
-
-
-}
+ */  
+        public void moveTo(Square moveTo){
+        moveTo.setImage(this.imageType);
+        this.setImage(0);
+        }
+    
+    
+    
+    }
 

@@ -8,9 +8,10 @@ public class Board {
     private JFrame guiWindow = new JFrame();
     private JPanel guiPanel = new JPanel();
     private GridLayout hopperBoard = new GridLayout(5,5);
-    private Square[][] arraySqaure = new Square[5][5];
+    private Square[][] currentLevelBoard = new Square[5][5];
     private Square selectedSquare = null;
     private Square moveToSquare; 
+    private int selectedX; 
     
     //Sets the GUI & playspace for the board 
     public Board(){
@@ -42,14 +43,32 @@ public class Board {
         for (int i = 0; i< 5; i++){
             for(int j =0; j<5; j++){      
             int imageType = levelArray[i][j]; // Takes the value at the coordinates and stores its image type
-            arraySqaure[i][j] = new Square(imageType,i,j, this); //Parse the image type and its corindates and create a Square object
-            guiPanel.add(arraySqaure[i][j].getButton());  //Add the Square object & convert to a button before adding to the panel 
+            currentLevelBoard[i][j] = new Square(imageType,i,j, this); //Parse the image type and its corindates and create a Square object
+            guiPanel.add(currentLevelBoard[i][j].getButton());  //Add the Square object & convert to a button before adding to the panel 
             }
             guiWindow.setVisible(true);
         }
     }
 
-    public Square getSelected(){
+    public void moveFrog(){
+        //if a validMove returns TRUE then do this otherwise not valid and don't move
+        //if(validMove()){
+        selectedSquare.moveTo(moveToSquare);
+        selectedSquare = moveToSquare;
+        moveToSquare = null;
+        //}
+
+    }
+    
+    /*private boolean validMove() {
+        int selectedX = selectedSquare.getCoordinate()[0];
+        int jumpTo = selectedX + 1;
+        int selectedY = selectedSquare.getCoordinate(0)[];
+        if (selectedX == Y)
+        return true;
+    }
+    */
+    public Square getSelected() {
         return selectedSquare;
     }
 
@@ -57,6 +76,12 @@ public class Board {
     public void setSelected(Square sq){
         selectedSquare = sq;
     }
+
+    public void setMove(Square sq){
+        moveToSquare = sq;
+        moveFrog();
+    }
+
 
 
     public boolean isSelected(){
