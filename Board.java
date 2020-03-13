@@ -9,11 +9,13 @@ public class Board {
     private JPanel guiPanel = new JPanel();
     private GridLayout hopperBoard = new GridLayout(5,5);
     private Square[][] arraySqaure = new Square[5][5];
+    private Square selectedSquare = null;
+    private Square moveToSquare; 
     
     //Sets the GUI & playspace for the board 
     public Board(){
         guiWindow.setTitle("Hoppers Jumping Game");
-        guiWindow.setSize(750, 750);
+        guiWindow.setSize(760, 780);   //height & width 
         guiWindow.setContentPane(guiPanel);
         guiWindow.setVisible(true);
         guiWindow.setResizable(false);
@@ -39,13 +41,34 @@ public class Board {
     public void drawBoard(int levelArray [][]){
         for (int i = 0; i< 5; i++){
             for(int j =0; j<5; j++){      
-            int arrayIndex = levelArray[i][j];
-            arraySqaure[i][j] = new Square(arrayIndex,i,j);
-            guiPanel.add(arraySqaure[i][j].getButton()); 
+            int imageType = levelArray[i][j]; // Takes the value at the coordinates and stores its image type
+            arraySqaure[i][j] = new Square(imageType,i,j, this); //Parse the image type and its corindates and create a Square object
+            guiPanel.add(arraySqaure[i][j].getButton());  //Add the Square object & convert to a button before adding to the panel 
+            }
+            guiWindow.setVisible(true);
         }
-        guiWindow.setVisible(true);
     }
 
+    public Square getSelected(){
+        return selectedSquare;
     }
+
+    //Stores the slected sqaure parsed into the function to selectedSquare
+    public void setSelected(Square sq){
+        selectedSquare = sq;
+    }
+
+
+    public boolean isSelected(){
+            if (selectedSquare == null){
+             return false;
+            }
+            return true;
+    
+
+
+    }
+
+
 }
 
