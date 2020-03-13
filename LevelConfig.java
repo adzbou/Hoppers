@@ -11,6 +11,8 @@ public class LevelConfig{
      * 2 = Greenfrog
      * 3 = RedFrog
      */
+
+
     int [][] defaultBackground ={
         {0, 1, 0, 1, 0},
         {1, 0, 1, 0, 1},
@@ -19,29 +21,30 @@ public class LevelConfig{
         {0, 1, 0, 1, 0},
     };
 
-    int [][] level1 ={
-        {0, 1, 0, 1, 0},
-        {1, 2, 1, 2, 1},
-        {0, 1, 2, 1, 0},
-        {1, 0, 1, 0, 1},
-        {2, 1, 3, 1, 2},
-    };
-
-
-    int [][] level2 ={
-        {1, 0, 3, 0, 1}, 
-        {0, 1, 0, 1, 0}, 
-        {1, 0, 1, 0, 1}, 
-        {0, 1, 0, 1, 0}, 
-        {1, 0, 1, 0, 1}, 
+    private int [][][] levels = {
+        {
+            {0, 1, 0, 1, 0},
+            {1, 2, 1, 2, 1},
+            {0, 1, 2, 1, 0},
+            {1, 0, 1, 0, 1},
+            {2, 1, 3, 1, 2},
+        },
+        {
+            {1, 0, 3, 0, 1}, 
+            {0, 1, 0, 1, 0}, 
+            {1, 0, 1, 0, 1}, 
+            {0, 1, 0, 1, 0}, 
+            {1, 0, 1, 0, 1}
+        }
     };
     
-    LevelConfig(){  
-
+    
+    /**
+     * Searches the 3D array called levels for the 2D array of each level
+     */
+    int[][] getLevel(int num){
+        return levels[num-1];
     }
-    
-
-
 
 
 
