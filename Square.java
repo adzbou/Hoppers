@@ -1,18 +1,25 @@
 import javax.swing.*;
 import java.awt.*;
-public class Square{
+import java.awt.event.*;
+public class Square implements ActionListener{
     
     private JButton button = new JButton();
-    private ImageIcon icon;
-    private String iconName;
+    private int imageType;
+    private ImageIcon imageIcon;
     private int xCoordinate;
-    private int yCoordinate; 
+    private int yCoordinate;
+    private String ROOT_PATH = "resources/images/";
+    private String[] fileNames = {"LilyPad.png", "Water.png", 
+                         "GreenFrog.png", "RedFrog.png",
+                         "RedFrog2.png", "GreenFrog2.png"}; 
+
     
-    public Square(String iconName, int xCoordinate, int yCoordinate){
+    public Square(int i, int xCoordinate, int yCoordinate){
+        this.imageType = i;
         this.xCoordinate = xCoordinate;
         this.yCoordinate = yCoordinate;
-        this.iconName = iconName;
-        icon = new ImageIcon(this.iconName);    
+        imageIcon = new ImageIcon(ROOT_PATH + fileNames[i]); 
+        button.addActionListener(this);  
     }
 
     public int[] getCoordinate(){
@@ -21,8 +28,28 @@ public class Square{
     }
 
     public JButton getButton(){
-        button.setIcon(icon);
+        button.setIcon(imageIcon);
         return button;
     }
+
+    private void setImage(int i) {
+        imageIcon = new ImageIcon(ROOT_PATH + fileNames[i]); 
+        imageType = i;
+        button.setIcon(imageIcon);
+    }
+
+    public void actionPerformed(ActionEvent e){
+        if (imageType == 2) {
+            setImage(5);
+            System.out.println("Image Changed");
+        }
+    }
+
+	
+
+
+
+
+
 }
 
