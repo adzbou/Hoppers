@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.lang.Math; 
 public class Board {
     /**
      * Initliaises and encapsualates the instance variables
@@ -78,7 +79,7 @@ public class Board {
         System.out.println(destinationY);
 
 
-        if(Math.abs(sourceX-destinationX) ==2 && Math.abs(sourceY-destinationY) == 1) {
+        if(Math.abs(sourceX-destinationX) ==2 && Math.abs(sourceY-destinationY) == 1){
             return true;
         }
         else if(Math.abs(sourceY-destinationY)==2 && Math.abs(sourceX-destinationX)==1) {
