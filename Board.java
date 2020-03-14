@@ -12,10 +12,6 @@ public class Board {
     private Square[][] currentLevelBoard = new Square[5][5];
     private Square selectedSquare = null;
     private Square moveToSquare;
-    private int sourceX; 
-    private int sourceY;
-    private int destinationX;
-    private int destinationY;
     
     //Sets the GUI & playspace for the board 
     public Board(){
@@ -57,9 +53,12 @@ public class Board {
     public void moveFrog(){
         //if a validMove returns TRUE then do this otherwise not valid and don't move
         if(validMove()){
-        selectedSquare.moveTo(moveToSquare);
-        selectedSquare = moveToSquare;
-        moveToSquare = null;
+            int middleSquareX = (selectedSquare.getXCoordinate() +moveToSquare.getXCoordinate()) /2;
+            int middleSquareY = (selectedSquare.getYCoordinate() +moveToSquare.getYCoordinate()) /2;
+            currentLevelBoard[middleSquareX][middleSquareY].deleteFrog();
+            selectedSquare.moveTo(moveToSquare);
+            selectedSquare = moveToSquare;
+            moveToSquare = null;
         }
         else{
             System.out.println("Illegal MOVE");
@@ -79,11 +78,11 @@ public class Board {
         System.out.println(destinationY);
 
 
-        if(Math.abs(sourceX-destinationX) ==2 && Math.abs(sourceY-destinationY) == 1){
-            return true;
-        }
-        else if(Math.abs(sourceY-destinationY)==2 && Math.abs(sourceX-destinationX)==1) {
-            return true;
+        if(Math.abs(sourceX-destinationX) ==2 || Math.abs(sourceY-destinationY) == 4 || Math.abs(sourceX-destinationX) == 4 || Math.abs(sourceY-destinationY) == 2){
+            if(!(Math.abs(sourceY-destinationY) == 4 && Math.abs(sourceX-destinationX) == 4)){
+                if(currentLevelBoard[(sourceX + destinationX)/2][(sourceY + destinationY)/2].checkFrog())
+                    return true;
+            }
         }
     
     return false;

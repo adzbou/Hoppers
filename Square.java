@@ -14,7 +14,7 @@ public class Square implements ActionListener{
                          "GreenFrog.png", "RedFrog.png",
                          "RedFrog2.png", "GreenFrog2.png"}; 
 
-                         
+                    
     public Square(int imageType, int xCoordinate, int yCoordinate, Board board){
         this.imageType = imageType;
         this.xCoordinate = xCoordinate;
@@ -24,19 +24,12 @@ public class Square implements ActionListener{
         button.addActionListener(this);  
     }
 
-
     public int getXCoordinate(){
         return xCoordinate;
     }
 
     public int getYCoordinate(){
         return yCoordinate;
-    }
-
-
-    public int[] getCoordinate(){
-        int[] arr = {xCoordinate,yCoordinate};
-        return arr;
     }
 
     public JButton getButton(){
@@ -73,57 +66,28 @@ public class Square implements ActionListener{
             }
         }else if (imageType == 0){
             board.setMove(this);
-        }
-        
-       
+        }           
     }
 
-	//public void swapWith(Square s) {}
+    public boolean checkFrog(){
+        if (imageType == 2){
+            return true;
+        }
+        return false;
+    }
 
-    //Select
-    /*
-    public void changeID(){
-        if(board.getSelected() == this){
-            if (imageType == 5){
-                setImage(2);
-            }
-            if (imageType == 4){
-                setImage(3);
-            }
-            board.setSelected(null);
-        }
-         //If selected == null  
-         else if (!board.isSelected()){
-            if (imageType == 2){
-                setImage(5);
-                board.setSelected(this);
-            }
-            if (imageType == 3){
-                setImage(4);
-                board.setSelected(this);
-            }
-        }
-        //Moves the pieces 
-        else if (imageType == 0  && board.getSelected()!=null){
-            setImage(board.getSelected().imageType);
-            board.getSelected().setImage(0);
-            if (imageType == 5) {
-                setImage(2);
-            }
-            if (imageType == 4){
-                setImage(3);
-            }
-            board.setSelected(null);
-        
-        }
+    public void deleteFrog(){
+        imageType = 0;
+        button.setIcon(new ImageIcon(ROOT_PATH + fileNames[imageType]));
     }
- */  
-        public void moveTo(Square moveTo){
-        moveTo.setImage(this.imageType);
-        this.setImage(0);
-        }
-    
-    
-    
+
+
+    public void moveTo(Square moveTo){
+    moveTo.setImage(this.imageType);
+    this.setImage(0);
     }
+    
+    
+    
+}
 
