@@ -10,8 +10,11 @@ public class Board {
     private GridLayout hopperBoard = new GridLayout(5,5);
     private Square[][] currentLevelBoard = new Square[5][5];
     private Square selectedSquare = null;
-    private Square moveToSquare; 
-    private int selectedX; 
+    private Square moveToSquare;
+    private int sourceX; 
+    private int sourceY;
+    private int destinationX;
+    private int destinationY;
     
     //Sets the GUI & playspace for the board 
     public Board(){
@@ -52,22 +55,39 @@ public class Board {
 
     public void moveFrog(){
         //if a validMove returns TRUE then do this otherwise not valid and don't move
-        //if(validMove()){
+        if(validMove()){
         selectedSquare.moveTo(moveToSquare);
         selectedSquare = moveToSquare;
         moveToSquare = null;
-        //}
-
+        }
+        else{
+            System.out.println("Illegal MOVE");
+        }
     }
     
-    /*private boolean validMove() {
-        int selectedX = selectedSquare.getCoordinate()[0];
-        int jumpTo = selectedX + 1;
-        int selectedY = selectedSquare.getCoordinate(0)[];
-        if (selectedX == Y)
-        return true;
+    private boolean validMove() {
+        int sourceX = selectedSquare.getXCoordinate();
+        int sourceY = selectedSquare.getYCoordinate();
+        int destinationX = moveToSquare.getXCoordinate();
+        int destinationY = moveToSquare.getYCoordinate();
+        System.out.println("\nTHIS IS SOURCE");
+        System.out.println(sourceX);
+        System.out.println(sourceY);
+        System.out.println("\nTHIS IS NOW DEST");
+        System.out.println(destinationX);
+        System.out.println(destinationY);
+
+
+        if(Math.abs(sourceX-destinationX) ==2 && Math.abs(sourceY-destinationY) == 1) {
+            return true;
+        }
+        else if(Math.abs(sourceY-destinationY)==2 && Math.abs(sourceX-destinationX)==1) {
+            return true;
+        }
+    
+    return false;
     }
-    */
+
     public Square getSelected() {
         return selectedSquare;
     }

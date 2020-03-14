@@ -14,15 +14,25 @@ public class Square implements ActionListener{
                          "GreenFrog.png", "RedFrog.png",
                          "RedFrog2.png", "GreenFrog2.png"}; 
 
-    
-    public Square(int i, int xCoordinate, int yCoordinate, Board board){
-        this.imageType = i;
+                         
+    public Square(int imageType, int xCoordinate, int yCoordinate, Board board){
+        this.imageType = imageType;
         this.xCoordinate = xCoordinate;
         this.yCoordinate = yCoordinate;
         this.board = board;
-        imageIcon = new ImageIcon(ROOT_PATH + fileNames[i]); 
+        imageIcon = new ImageIcon(ROOT_PATH + fileNames[imageType]); 
         button.addActionListener(this);  
     }
+
+
+    public int getXCoordinate(){
+        return xCoordinate;
+    }
+
+    public int getYCoordinate(){
+        return yCoordinate;
+    }
+
 
     public int[] getCoordinate(){
         int[] arr = {xCoordinate,yCoordinate};
