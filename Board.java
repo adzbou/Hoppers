@@ -32,19 +32,12 @@ public class Board {
      * and then comapres the index's of the array against conditions 
      * to draw the level 
      */
-
-/*
-    Square getFileNames = new Square(null, 0, 0);
-    String[] fileNames = getFileNames.getFileArray();
-
-*/
-
     public void drawBoard(int levelArray [][]){
         for (int i = 0; i< 5; i++){
             for(int j =0; j<5; j++){      
-            int imageType = levelArray[i][j]; // Takes the value at the coordinates and stores its image type
-            currentLevelBoard[i][j] = new Square(imageType,i,j, this); //Parse the image type and its corindates and create a Square object
-            guiPanel.add(currentLevelBoard[i][j].getButton());  //Add the Square object & convert to a button before adding to the panel 
+                int imageType = levelArray[i][j]; // Takes the value at the coordinates and stores its image type
+                currentLevelBoard[i][j] = new Square(imageType,i,j, this); //Parse the image type and its corindates and create a Square object
+                guiPanel.add(currentLevelBoard[i][j].getButton());  //Add the Square object & convert to a button before adding to the panel 
             }
             guiWindow.setVisible(true);
         }
@@ -65,27 +58,19 @@ public class Board {
         }
     }
     
-    private boolean validMove() {
+    private boolean validMove(){
         int sourceX = selectedSquare.getXCoordinate();
         int sourceY = selectedSquare.getYCoordinate();
         int destinationX = moveToSquare.getXCoordinate();
         int destinationY = moveToSquare.getYCoordinate();
-        System.out.println("\nTHIS IS SOURCE");
-        System.out.println(sourceX);
-        System.out.println(sourceY);
-        System.out.println("\nTHIS IS NOW DEST");
-        System.out.println(destinationX);
-        System.out.println(destinationY);
-
-
+         
         if(Math.abs(sourceX-destinationX) ==2 || Math.abs(sourceY-destinationY) == 4 || Math.abs(sourceX-destinationX) == 4 || Math.abs(sourceY-destinationY) == 2){
             if(!(Math.abs(sourceY-destinationY) == 4 && Math.abs(sourceX-destinationX) == 4)){
                 if(currentLevelBoard[(sourceX + destinationX)/2][(sourceY + destinationY)/2].checkFrog())
                     return true;
             }
-        }
-    
-    return false;
+        }  
+        return false;
     }
 
     public Square getSelected() {
@@ -101,8 +86,6 @@ public class Board {
         moveToSquare = sq;
         moveFrog();
     }
-
-
 
     public boolean isSelected(){
             if (selectedSquare == null){
