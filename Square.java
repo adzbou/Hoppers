@@ -25,9 +25,8 @@ public class Square implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent e){
-        changePiece();  
+        changePiece();
     }
-
     public int getXCoordinate(){
         return xCoordinate;
     }
@@ -54,14 +53,17 @@ public class Square implements ActionListener{
         return false;
     }
 
-    public void deleteFrog(){
-        imageType = 0;
+    public boolean deleteFrog(){
+        imageType = 0; 
         button.setIcon(new ImageIcon(ROOT_PATH + fileNames[imageType]));
+        return true;
     }
 
     public void moveTo(Square moveTo){
+        //int frogRemoved =0;
         moveTo.setImage(this.imageType);
         this.setImage(0);
+        //frogRemoved += 1;
     }
     
     public void changePiece(){
@@ -88,6 +90,16 @@ public class Square implements ActionListener{
             board.setMove(this);
         }      
     }
+
     
+    
+
+
+
+
+
+
+
+
 }
 

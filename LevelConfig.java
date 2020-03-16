@@ -106,9 +106,19 @@ public class LevelConfig{
      * Searches the 3D array called levels for the 2D array of each level
      */
     int[][] getLevel(int num){
-        return levels[num-1];
+        return levels[num];
     }
 
-
+    int getFrogs(int num){
+        int frogCount = 0;
+        for (int i=0; i<5; i++){
+            for (int j=0; j<5; j++){
+                if (levels[num][i][j] == 2){
+                    frogCount += 1;
+                }
+            }
+        }
+        return(frogCount);
+    }
 
 }

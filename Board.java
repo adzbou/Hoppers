@@ -6,14 +6,20 @@ public class Board {
      * Initliaises and encapsualates the instance variables
      * Encapsulation prevents the variables from being accessed outside the class
      */
+
     private JFrame guiWindow = new JFrame();
+    private JFrame winMessage;
     private JPanel guiPanel = new JPanel();
     private GridLayout hopperBoard = new GridLayout(5,5);
     private Square[][] currentLevelBoard = new Square[5][5];
+    LevelConfig levels = new LevelConfig();
+    private int levelNumber;
+    private int frogCount =0;
     private Square selectedSquare = null;
     private Square moveToSquare;
     
-    //Sets the GUI & playspace for the board 
+    
+    //Sets the GUI & playspace for the board   
     public Board(){
         guiWindow.setTitle("Hoppers Jumping Game");
         guiWindow.setSize(760, 780);   //height & width 
@@ -23,8 +29,19 @@ public class Board {
         guiPanel.setLayout(hopperBoard);
         guiWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        LevelConfig levels = new LevelConfig();
-        drawBoard(levels.getLevel(1));
+        ///DISPLAYS THE LEVEL TO THE BOARD
+        
+        
+        levelNumber = 5;
+        drawBoard(levels.getLevel(levelNumber));
+        
+        //Displays the message if the user WINS
+        
+        //System.out.println(currentFrogs);
+    
+        
+    
+    
     }
 
     /**
@@ -43,15 +60,32 @@ public class Board {
         }
     }
 
+    
     public void moveFrog(){
+        
         //if a validMove returns TRUE then do this otherwise not valid and don't move
+
         if(validMove()){
+           
             int middleSquareX = (selectedSquare.getXCoordinate() +moveToSquare.getXCoordinate()) /2;
             int middleSquareY = (selectedSquare.getYCoordinate() +moveToSquare.getYCoordinate()) /2;
             currentLevelBoard[middleSquareX][middleSquareY].deleteFrog();
             selectedSquare.moveTo(moveToSquare);
             selectedSquare = moveToSquare;
             moveToSquare = null;
+            frogCount = frogCount + 1;
+            //System.out.println(a);
+            if (frogCount == levels.getFrogs(levelNumber)) {
+                winMessage = new JFrame();
+                JOptionPane.showMessageDialog(winMessage, "Congratulations you have won!");
+                frogCount = 0;
+            }
+            
+            else{
+                System.out.println("YOLO");
+            }
+        
+        
         }
         else{
             System.out.println("Illegal MOVE");
@@ -92,10 +126,41 @@ public class Board {
              return false;
             }
             return true;
-    
-
-
     }
+
+    public int returnFrog(){
+        int currentFrogs = levels.getFrogs(levelNumber); 
+        return currentFrogs; 
+    }
+    
+    /*
+    public void winningMessage(int levelArray[][]){
+        winMessage = new JFrame();
+        int currentFrogs =0;
+        int frogCount=0;
+    
+        for (int i =0; i<5; i++){
+            for (int j = 0; j<5; j++){
+                if (levelArray[i][j] == 2){
+                    frogCount += 1;
+                }
+
+            }
+        }
+        
+        JOptionPane.showMessageDialog(winMessage, "Congratulations you have won!");
+    }
+   
+    */
+
+
+
+
+
+
+
+
+
 
 
 }
