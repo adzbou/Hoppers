@@ -72,6 +72,7 @@ public class Board {
             currentLevelBoard[middleSquareX][middleSquareY].deleteFrog();
             selectedSquare.moveTo(moveToSquare);
             selectedSquare = moveToSquare;
+            playSound("resources/sounds/water.wav");
             moveToSquare = null;
             frogCount = frogCount + 1;
             // System.out.println(a);
