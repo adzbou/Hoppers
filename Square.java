@@ -88,6 +88,5 @@ public class Square implements ActionListener{
             board.setMove(this);
         }      
     }
-
 }
 
